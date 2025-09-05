@@ -2,5 +2,21 @@
 {% block content %}
 <h2>{{ article['title'] }}</h2>
 <p>{{ article['content'] }}</p>
-<a href="{{ url_for('index') }}">← Назад</a>
+
+{% if tasks %}
+<hr>
+<h3>Задачи</h3>
+<form method="POST">
+    {% for t in tasks %}
+        <div style="margin-bottom:15px;">
+            <p><b>{{ t['question'] }}</b></p>
+            <input type="text" name="task_{{ t['id'] }}" placeholder="Введите ответ">
+            {% if feedback.get(t['id']) %}
+                <p>{{ feedback[t['id']] }}</p>
+            {% endif %}
+        </div>
+    {% endfor %}
+    <button type="submit">Проверить ответы</button>
+</form>
+{% endif %}
 {% endblock %}

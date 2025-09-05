@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Результаты поиска</h2>
+{% if results %}
+<ul>
+    {% for a in results %}
+        <li><a href="{{ url_for('article', article_id=a['id']) }}">{{ a['title'] }}</a></li>
+    {% endfor %}
+</ul>
+{% else %}
+<p>Ничего не найдено по запросу "{{ query }}".</p>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Ачивки</h2>
+<ul>
+    {% for a in achievements %}
+        <li><a href="{{ url_for('achievement_detail', ach_id=a['id']) }}">{{ a['name'] }}</a></li>
+    {% endfor %}
+</ul>
+{% endblock %}
